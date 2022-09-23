@@ -99,7 +99,7 @@ functions:
           authorizer: Auth
           reqValidatorName: RequestBodyValidator
           request:
-            schema:
+            schemas:
               application/json: ${file(models/update-todo-model.json)}
     iamRoleStatements:
       - Effect: Allow
