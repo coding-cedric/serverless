@@ -64,7 +64,7 @@ async function verifyToken(authHeader: string): Promise<JwtPayload> {
   const { data } = await Axios.get<any>(jwksUrl, {headers: {Accept: 'application/json'}})
   const cert = data.keys[0].kid
   console.log(cert, jwt.header.kid)
-  const certificate = `-----BEGIN CERTIFICATE-----
+  const certificate: string = `-----BEGIN CERTIFICATE-----
   MIIDDTCCAfWgAwIBAgIJX6aNU+9yuuxRMA0GCSqGSIb3DQEBCwUAMCQxIjAgBgNV
   BAMTGWRldi1rZHRxMjN6NS51cy5hdXRoMC5jb20wHhcNMjIwOTIyMjMyNDEyWhcN
   MzYwNTMxMjMyNDEyWjAkMSIwIAYDVQQDExlkZXYta2R0cTIzejUudXMuYXV0aDAu
