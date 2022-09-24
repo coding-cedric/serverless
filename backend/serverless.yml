@@ -26,7 +26,7 @@ provider:
   environment:
     TODOS_TABLE: Todos-${self:provider.stage}
     TODOS_CREATED_AT_INDEX: CreatedAtIndex
-    ATTACHMENT_S3_BUCKET: serverless-c4-todo-images-319857715727${self:provider.stage}
+    ATTACHMENT_S3_BUCKET: serverless-c4-todo-images-319857715727-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
 
   logs:
@@ -79,7 +79,7 @@ functions:
           authorizer: Auth
           reqValidatorName: RequestBodyValidator
           request:
-            schemas:
+            schema:
               application/json: ${file(models/create-todo-model.json)}
     iamRoleStatements:
       - Effect: Allow
@@ -99,7 +99,7 @@ functions:
           authorizer: Auth
           reqValidatorName: RequestBodyValidator
           request:
-            schemas:
+            schema:
               application/json: ${file(models/update-todo-model.json)}
     iamRoleStatements:
       - Effect: Allow
@@ -145,10 +145,20 @@ resources:
     # Add necessary AWS resources. You will need at least the following AWS resources
     # TODO: Fill the properties
     # Feel free to change the names as you like. 
+    # Request body validator resource
+    RequestBodyValidator:
+      Type: AWS::ApiGateway::RequestValidator
+      Properties:
+        Name: 'request-body-validator'
+        RestApiId:
+          Ref: ApiGateWayRestApi
+        ValidateRequestBody: true
+        ValidateRequestParameters: false
+
     GatewayResponseDefault4XX:
       Type: AWS::ApiGateway::GatewayResponse
       Properties:
-        RespoonseParameters:
+        ResponseParameters:
           gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
           gatewayresponse.header.Access-Control-Allow-Headers: "'Context-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
           gatewayresponse.header.Access.Control-Allow-Methods: "'GET,OPTIONS,POST'"
@@ -216,17 +226,7 @@ resources:
           Statement:
             - Sid: PublicReadForGetBucketObjects
               Effect: Allow
-              Principal: Allow
+              Principal: '*'
               Action: 's3:GetObject'
               Resource: 'arn:aws:s3:::${self:provider.environment.ATTACHMENT_S3_BUCKET}/*'
         Bucket: !Ref AttachmentsBucket
-
-    # Request body validator resource
-    RequestBodyValidator:
-      Type: AWS::ApiGateway::RequestValidator
-      Properties:
-        Name: 'request-body-validator'
-        RestApiId:
-          Ref: ApiGateWayRestApi
-        ValidateRequestBody: true
-        ValidateRequestParameters: false
