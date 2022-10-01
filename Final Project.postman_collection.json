@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d0700d24-79ec-487e-8403-b565bef7f8e0",
+		"_postman_id": "cd0e5059-0d04-4069-98d9-4a4e80d7cf49",
 		"name": "Udacity C4 Project",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,6 +11,16 @@
 				{
 					"name": "Get all todos",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -19,10 +29,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "https://{{apiId}}.execute-api.us-east-1.amazonaws.com/dev/todos",
 							"protocol": "https",
@@ -200,7 +206,6 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "ce2b42d4-8cc5-4f30-a6ed-e7f0f303c3fd",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -210,7 +215,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "efb16c49-3866-4241-97d1-360ad72736d8",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -224,7 +228,6 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "2e83c0fe-6650-44d5-a90f-4c27ff720d83",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -234,7 +237,6 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "977c227e-2df3-42eb-9a48-ec25e2f7eeae",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -244,15 +246,13 @@
 	],
 	"variable": [
 		{
-			"id": "bf208e6b-f66d-4008-9366-dd541ff65425",
 			"key": "apiId",
-			"value": "",
+			"value": "3uplp6kby3",
 			"type": "string"
 		},
 		{
-			"id": "9bc6399a-d2bb-4f2d-9ffa-8480370d383c",
 			"key": "authToken",
-			"value": "",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjE0cE9VZ3loMFpfTUt2a3pnMTJqMSJ9.eyJpc3MiOiJodHRwczovL2Rldi1rZHRxMjN6NS51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjMzODBiOTdlNDcxMGY2MjIyMjIxMDVjIiwiYXVkIjoiR3N5Y3o4MmhKYkpCd3g4RkxEVXFidG1yOGp5SnJJWEMiLCJpYXQiOjE2NjQ2MjQxODcsImV4cCI6MTY2NTIyODk4NywiYXRfaGFzaCI6IjFnNXZGQmpyM0tyTGRyUGw0SV84S3ciLCJzaWQiOiI5WlJGVTJodzZrcXo5N0tQcl9Ia19UWU1aRWZ1dFhidiIsIm5vbmNlIjoiWlQ0M3BnWWV4cmlFRndDWVpETUxaLmQ2VnhBMGdIdFkifQ.muAqKbmh73i6K_OB5v42U8AO1eBGP7jvooLWtq7z0CG2C-QOZcuEfBhs_7orkcZ7_4CH2YlF8njzWincRaOysZbbvnnrWyaTjZPguiwiLPuc28oTN0IPDoaLcsavauTv2WWox0O5jXO_g7IOg7cyrk_CrHZa42oA1u2RGBT_a2NgsoN4sM5xymZL3_VNzOEEYVO5gLfBA1JSo1gkStYXppMCPGEOTl6XfQoU-exEwFK59n6YyFrHBBa8V0QOzCLDOjvOHc7Kl_F9t8BoNthKS7dDzLMo8c822abO5wqxtOurdSDPx9aUYgtFmzOmKuBvOTbR99Yn09rXcwAZJ36Vdg",
 			"type": "string"
 		}
 	]
